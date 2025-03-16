@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" href="/favicon.ico" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <link
+      rel="stylesheet"
+      href="./node_modules/carton-ui/dist/index.css"
+    />
+    <title>Esm App</title>
+  </head>
+  <body>
+    <div id="app"></div>
+    <script type="importmap">
+      {
+        "imports": {
+          "vue": "https://esm.sh/vue/dist/vue.esm-bundler.js",
+          "carton-ui": "./node_modules/carton-ui/dist/index.mjs"
+        }
+      }
+    </script>
+    <script type="module">
+      import { createApp } from 'vue'
+      import UI from 'carton-ui'
+
+      const app = createApp({
+        template: `
+          <w-button></w-button>
+        `,
+      })
+
+      app.use(UI)
+      app.mount('#app')
+
+      console.log(UI)
+    </script>
+  </body>
+</html>

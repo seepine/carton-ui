@@ -1,0 +1,43 @@
+import type { CSSProperties, VNode } from 'vue'
+
+export type AnyObject = { [x: string]: any }
+export type Run<T, R> =
+  | void
+  | R
+  | Promise<R>
+  | ((form: T) => R)
+  | ((form: T) => Promise<R>)
+
+export type Btn<T = AnyObject> = {
+  /**
+   * 按钮是否显示
+   */
+  display?: Run<T, boolean>
+  /**
+   * 按钮显示文字
+   */
+  text?: Run<T, string>
+  /**
+   * 自定义渲染
+   * @param data
+   * @param click
+   * @returns
+   */
+  render?: (data: T, click: () => void) => VNode
+  /**
+   * 传递style
+   */
+  style?: CSSProperties
+  /**
+   * 点击按钮后处理数据，再显示弹窗
+   */
+  onBefore?: Run<T, T>
+  /**
+   * 数据填写完处理或校验数据，再请求到后端
+   */
+  onAfter?: Run<T, T>
+  /**
+   * 请求后端，例如 onRequest: (data)=> axios.post('/xxx', data)
+   */
+  onSubmit?: Run<T, void>
+}

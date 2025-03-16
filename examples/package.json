@@ -1,0 +1,27 @@
+{
+  "name": "@seepine/examples",
+  "private": true,
+  "version": "0.1.0",
+  "description": "CartonUi examples.",
+  "scripts": {
+    "dev": "vite",
+    "preview": "vite preview --port 4173",
+    "build-only": "vite build",
+    "type-check": "vue-tsc --noEmit"
+  },
+  "dependencies": {
+    "vue": "^3.3.4"
+  },
+  "devDependencies": {
+    "@types/node": "^20.4.4",
+    "@vitejs/plugin-vue": "^4.2.3",
+    "@vue/tsconfig": "^0.4.0",
+    "npm-run-all": "^4.1.5",
+    "tdesign-vue-next": "^1.11.4",
+    "typescript": "~5.1.6",
+    "unplugin-vue-components": "^0.25.1",
+    "carton-ui": "workspace:*",
+    "vite": "^4.4.6",
+    "vue-tsc": "^1.8.6"
+  }
+}
