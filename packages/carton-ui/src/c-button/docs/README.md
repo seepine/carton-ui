@@ -18,6 +18,10 @@ permalink: /components/c-button
 
 <demo src="../__demos__/async.vue"></demo>
 
+## 按钮形式
+
+<demo src="../__demos__/variant.vue"></demo>
+
 ## 属性
 
 ### Props
