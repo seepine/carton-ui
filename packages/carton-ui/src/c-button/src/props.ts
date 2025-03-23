@@ -7,7 +7,7 @@ export const cButtonProps = {
    */
   click: {
     type: [Function, Promise] as PropType<
-      ((e?: MouseEvent) => void) | ((e?: MouseEvent) => Promise<void>)
+      ((e: MouseEvent) => void) | ((e: MouseEvent) => Promise<void>)
     >,
   },
   /**
