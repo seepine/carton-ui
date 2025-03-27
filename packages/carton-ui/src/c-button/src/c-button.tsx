@@ -3,7 +3,7 @@ import { useCreate } from '../../_hooks/create'
 import { cButtonProps } from './props'
 import { Button as TButton, Loading as TLoading } from 'tdesign-vue-next'
 import { throttle } from 'lodash-es'
-import { run } from '../../utils'
+import { runAsync } from '../../utils'
 
 const { name, bemClass } = useCreate('c-button')
 
@@ -23,7 +23,7 @@ export default defineComponent({
           timer = setTimeout(() => {
             loading.value = true
           }, props.loadingDelay)
-          run(props.click, e)
+          runAsync(props.click, e)
             .then(() => {})
             .finally(() => {
               clearTimeout(timer)

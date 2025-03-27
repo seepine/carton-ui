@@ -1,15 +1,14 @@
-import { computedAsync } from '@vueuse/core'
 import type { AnyObject, Btn } from '../types'
-import { run } from '../utils/run'
+import { computedAsync, runAsync } from '../utils'
 
 export const useBtn = (opt?: Btn) => {
   const text = computedAsync(async () => {
-    const res = await run(opt?.text)
+    const res = await runAsync(opt?.text)
     return res === undefined ? '' : res
   }, '')
 
   const display = computedAsync(async () => {
-    const res = await run(opt?.display)
+    const res = await runAsync(opt?.display)
     return res === undefined ? true : res
   }, true)
 
@@ -28,7 +27,7 @@ export const useBtn = (opt?: Btn) => {
   const onBefore = async (data: AnyObject) => {
     let res
     if (opt?.onBefore) {
-      res = await run(opt?.onBefore, data)
+      res = await runAsync(opt?.onBefore, data)
     }
     return res || data
   }
@@ -36,7 +35,7 @@ export const useBtn = (opt?: Btn) => {
   const onAfter = async (data: AnyObject) => {
     let res
     if (opt?.onAfter) {
-      res = await run(opt?.onAfter, data)
+      res = await runAsync(opt?.onAfter, data)
     }
     return res || data
   }
@@ -44,7 +43,7 @@ export const useBtn = (opt?: Btn) => {
   const onSubmit = async (data: AnyObject) => {
     let res
     if (opt?.onSubmit) {
-      res = await run(opt?.onSubmit, data)
+      res = await runAsync(opt?.onSubmit, data)
     }
     return res || data
   }
