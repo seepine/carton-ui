@@ -1,8 +1,10 @@
 import type { CSSProperties, VNode } from 'vue'
 
-export type AnyObject = { [x: string]: any }
+export type AnyObject = { [key: string]: any }
+
+export type AsyncValue<T> = T | Promise<T> | (() => T) | (() => Promise<T>)
+
 export type Run<T, R> =
-  | void
   | R
   | Promise<R>
   | ((form: T) => R)

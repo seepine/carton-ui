@@ -9,6 +9,10 @@ export const zh: SidebarConfig = {
           text: 'Button 按钮',
           link: '/components/c-button/',
         },
+        {
+          text: 'Checkbox 多选框',
+          link: '/components/c-checkbox/',
+        },
       ],
     },
   ],

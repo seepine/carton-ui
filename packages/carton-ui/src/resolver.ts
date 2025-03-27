@@ -3,6 +3,7 @@ import type {
   SideEffectsInfo,
 } from 'unplugin-vue-components/types'
 import { kebabCase } from 'unplugin-vue-components'
+import { ComponentNames } from '.'
 
 const isSSR = Boolean(
   process.env.SSR ||
@@ -47,12 +48,12 @@ export function CartonUiResolver(
   return {
     type: 'component',
     resolve: (name: string) => {
-      if (name.startsWith('C')) {
-        const partialName = name
+      const kebabcase = kebabCase(name)
+      if (ComponentNames.includes(kebabcase)) {
         return {
-          name: partialName,
+          name,
           from: `carton-ui/${moduleType}`,
-          sideEffects: getSideEffects(kebabCase(partialName), options),
+          sideEffects: getSideEffects(kebabcase, options),
         }
       }
     },
