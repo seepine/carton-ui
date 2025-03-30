@@ -50,4 +50,4 @@ export const cCheckboxProps = {
   },
 }
 
-export type CCheckboxProps = ExtractPropTypes<typeof cCheckboxProps>
+export type CCheckboxProps = Partial<ExtractPropTypes<typeof cCheckboxProps>>
