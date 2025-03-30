@@ -3,13 +3,15 @@ import { CButton } from './c-button'
 import { CCheckbox } from './c-checkbox'
 import { CRow } from './c-row'
 import { CCol } from './c-col'
+import { CForm } from './c-form'
 
 export * from './c-button'
 export * from './c-checkbox'
 export * from './c-row'
 export * from './c-col'
+export * from './c-form'
 
-const components = [CButton, CCheckbox, CRow, CCol]
+const components = [CButton, CCheckbox, CRow, CCol, CForm]
 export const ComponentNames = components.map(item => item.name)
 
 export function install(app: App) {

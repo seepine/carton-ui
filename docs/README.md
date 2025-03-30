@@ -4,7 +4,7 @@ title: 首页
 heroImage: logo.png
 actions:
   - text: 开始使用
-    link: /components/c-button
+    link: /form/base/
     type: primary
 
 features:
