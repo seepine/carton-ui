@@ -10,6 +10,7 @@ import {
 } from 'vue'
 import { isComputed, isFunction, isPromise } from './is'
 import type { AsyncValue } from '../types'
+import { throttle } from 'lodash-es'
 
 /**
  * 执行对象，获取真正的值
@@ -145,6 +146,7 @@ export const watchAsync = <T>(
     defaultValue?: T
     deep?: boolean
     immediate?: boolean
+    throttleDelay?: number
   }
 ): Ref<UnwrapRef<T> | undefined> => {
   const data = ref<T | undefined>(opt?.defaultValue)
@@ -154,12 +156,16 @@ export const watchAsync = <T>(
   } else {
     watchSource = () => watchObj
   }
-  const { deep = true, immediate = true } = opt || {}
+  const { deep = true, immediate = true, throttleDelay = 100 } = opt || {}
   watch(
     watchSource,
-    async () => {
-      data.value = await runAsync(callback)
-    },
+    throttle(
+      async () => {
+        data.value = await runAsync(callback)
+      },
+      throttleDelay,
+      { leading: true, trailing: true }
+    ),
     {
       deep,
       immediate,
