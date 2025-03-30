@@ -2,9 +2,9 @@
 permalink: /components/c-checkbox
 ---
 
-# CCheckbox
+# c-checkbox 多选框
 
-封装 CheckboxGroup
+对 `t-checkbox-group` 进行封装，扩展了异步选项能力。
 
 ## 基础用法
 
