@@ -1,0 +1,7 @@
+body {
+  --c-row-background: black;
+}
+
+.c-row {
+  background: var(--c-row-background);
+}

@@ -4,6 +4,33 @@ export type AnyObject = { [key: string]: any }
 
 export type AsyncValue<T> = T | Promise<T> | (() => T) | (() => Promise<T>)
 
+export interface ResponsiveValue {
+  /**
+   * <768px
+   */
+  xs?: number
+  /**
+   * ≥768px
+   */
+  sm?: number
+  /**
+   * ≥992px
+   */
+  md?: number
+  /**
+   * ≥1200px
+   */
+  lg?: number
+  /**
+   * ≥1400px
+   */
+  xl?: number
+  /**
+   * ≥1880px
+   */
+  xxl?: number
+}
+
 export type Run<T, R> =
   | R
   | Promise<R>

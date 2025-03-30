@@ -1,11 +1,15 @@
 import type { App } from 'vue'
 import { CButton } from './c-button'
 import { CCheckbox } from './c-checkbox'
+import { CRow } from './c-row'
+import { CCol } from './c-col'
 
 export * from './c-button'
 export * from './c-checkbox'
+export * from './c-row'
+export * from './c-col'
 
-const components = [CButton, CCheckbox]
+const components = [CButton, CCheckbox, CRow, CCol]
 export const ComponentNames = components.map(item => item.name)
 
 export function install(app: App) {
