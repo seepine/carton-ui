@@ -15,7 +15,7 @@ import type { FormInjection } from './interface'
 import { cloneDeep, isEqual, throttle } from 'lodash-es'
 import CButton from '../../c-button'
 import type { AnyObject } from '../../types'
-import { runAsync } from '../../utils'
+import { isFunction, runAsync } from '../../utils'
 
 const { name, bemClass } = useCreate('c-form')
 
@@ -39,7 +39,7 @@ export default defineComponent({
       { deep: true }
     )
 
-    const initDefaultValue = (val: any) => {
+    const initDefaultValue = (val: any = {}) => {
       backData.value = cloneDeep(val)
       props.option.columns?.forEach(column => {
         if (
@@ -97,15 +97,9 @@ export default defineComponent({
         {},
         {
           get(_, p) {
-            if (p === 'submit') {
-              return submit
-            }
             return ((formRef.value || {}) as any)[p]
           },
           has(_, p) {
-            if (p === 'submit') {
-              return true
-            }
             return p in (formRef.value || {})
           },
         }
@@ -116,25 +110,34 @@ export default defineComponent({
       if (props.option.footer === false) {
         return
       }
-      const { prefixRender, suffixRender } = props.option.footer || {}
+      const {
+        prefixRender,
+        suffixRender,
+        submitBtn = true,
+        resetBtn = true,
+      } = props.option.footer || {}
       return (
         <FormItem>
           <Row gutter={16} align="center">
-            {prefixRender ? prefixRender(data.value) : undefined}
-            <Col>
-              <CButton theme="primary" click={submit}>
-                提交
-              </CButton>
-            </Col>
-            <Col>
-              <Button theme="default" variant="base" type="reset">
-                重置
-              </Button>
-            </Col>
+            {isFunction(prefixRender) ? prefixRender(data.value) : undefined}
+            {submitBtn ? (
+              <Col>
+                <CButton theme="primary" click={submit} loadingDelay={250}>
+                  提交
+                </CButton>
+              </Col>
+            ) : undefined}
+            {resetBtn ? (
+              <Col>
+                <Button theme="default" variant="base" type="reset">
+                  重置
+                </Button>
+              </Col>
+            ) : undefined}
             {/* <Col>
               <Checkbox style="display:flex">提交后继续</Checkbox>
             </Col> */}
-            {suffixRender ? suffixRender(data.value) : undefined}
+            {isFunction(suffixRender) ? suffixRender(data.value) : undefined}
           </Row>
         </FormItem>
       )
@@ -142,18 +145,20 @@ export default defineComponent({
 
     return () => (
       <Loading
+        class="c-form__loading"
         loading={loading.value}
         fullscreen={false}
         inheritColor={false}
         showOverlay={false}
         delay={250}
-        size="small"
+        size="0"
       >
         <Form
           ref={formRef}
           data={data.value}
           class={bemClass.value}
           resetType="initial"
+          rules={props.option.rules}
           {...props.option.props}
           readonly={loading.value}
           onReset={reset}

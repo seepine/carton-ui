@@ -13,10 +13,7 @@ export const arrayTransferByKeys = (
     label?: string
   }
 ) => {
-  if (keys === undefined) {
-    return arr
-  }
-  const { label = 'label', value = 'value' } = keys
+  const { label = 'label', value = 'value' } = keys || {}
   return arr.map((item: any) => {
     if (isObject(item)) {
       return {
@@ -25,6 +22,9 @@ export const arrayTransferByKeys = (
         value: item[value],
       }
     }
-    return item
+    return {
+      label: item,
+      value: item,
+    }
   })
 }

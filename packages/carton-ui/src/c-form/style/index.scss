@@ -1,0 +1,14 @@
+:root {
+  --c-form-loading-mask-disabled: rgb(255 255 255 / 40%);
+}
+
+:root[theme-mode='dark'] {
+  --c-form-loading-mask-disabled: rgb(0 0 0 / 0%);
+}
+
+.c-form__loading {
+  .t-loading--full {
+    background-color: var(--c-form-loading-mask-disabled);
+    backdrop-filter: blur(0.5px);
+  }
+}

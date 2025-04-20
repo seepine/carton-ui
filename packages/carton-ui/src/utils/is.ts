@@ -24,6 +24,15 @@ export function isFunction(val: any): val is Function {
 }
 
 /**
+ * 是否数组
+ * @param val 值
+ * @returns bool
+ */
+export const isArray = <T = any>(val: any): val is Array<T> => {
+  return obj.call(val) === '[object Array]'
+}
+
+/**
  * 是否promise
  * @param val 值
  * @returns bool

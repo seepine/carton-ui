@@ -11,6 +11,9 @@ export * from './c-row'
 export * from './c-col'
 export * from './c-form'
 
+export * from './types'
+export * from './utils'
+
 const components = [CButton, CCheckbox, CRow, CCol, CForm]
 export const ComponentNames = components.map(item => item.name)
 
