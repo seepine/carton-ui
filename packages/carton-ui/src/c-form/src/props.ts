@@ -18,7 +18,7 @@ export const cFormProps = {
    * 类型定义
    */
   option: {
-    type: Object as PropType<FormOption>,
+    type: Object as PropType<FormOption<any>>,
     required: true,
     default: () => {
       return { columns: [] }
@@ -33,7 +33,7 @@ export const cFormItemProps = {
    * 类型定义
    */
   column: {
-    type: Object as PropType<FormColumn>,
+    type: Object as PropType<FormColumn<any>>,
     required: true,
     default: () => {
       return {}
