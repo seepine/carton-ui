@@ -18,9 +18,12 @@ html.dark {
 }
 
 @media screen and (width >= 1200px) {
-  .page .theme-default-content {
-    // margin: 0 0 0 4rem;
-    padding: 0 10rem 0 0;
+  .page {
+    .theme-default-content,
+    .page-meta,
+    .page-nav {
+      padding: 0 10rem 0 0;
+    }
   }
 
   .sidebar {
@@ -70,8 +73,12 @@ html.dark {
 }
 
 @media screen and (width >= 1440px) {
-  .page .theme-default-content {
-    padding: 0 8rem 0 0;
+  .page {
+    .theme-default-content,
+    .page-meta,
+    .page-nav {
+      padding: 0 8rem 0 0;
+    }
   }
 }
 
@@ -127,5 +134,12 @@ html.dark {
 .home {
   .theme-default-content {
     margin-bottom: 4rem;
+  }
+}
+
+// tdesign
+.t-date-picker__table {
+  table {
+    display: table !important;
   }
 }
