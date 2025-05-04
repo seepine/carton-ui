@@ -22,6 +22,7 @@ import type {
   TagInputChangeContext,
   TagInputValue,
   TdAutoCompleteProps,
+  TdButtonProps,
   TdCascaderProps,
   TdDatePickerProps,
   TdFormProps,
@@ -46,7 +47,7 @@ import type {
   UploadFile,
 } from 'tdesign-vue-next'
 import type { AnyObject, Run } from '../../types'
-import type { ComputedRef, Ref, VNode } from 'vue'
+import type { ComputedRef, CSSProperties, Ref, VNode } from 'vue'
 import type { CFormProps } from './props'
 import type {
   DataOption,
@@ -444,6 +445,12 @@ export interface FormOption<FormData extends AnyObject = AnyObject> {
     | false
     | {
         /**
+         * 自定义底部样式
+         *
+         * @defaultValue {width: '100%',display: 'flex',flexDirection: 'row',alignItems: 'center',gap: '16px'}
+         */
+        style?: CSSProperties
+        /**
          * 前缀自定义渲染
          * @param data 表单数据
          * @returns 视图
@@ -458,11 +465,21 @@ export interface FormOption<FormData extends AnyObject = AnyObject> {
         /**
          * 提交按钮是否显示
          */
-        submitBtn?: boolean
+        submitBtn?:
+          | false
+          | {
+              text?: string
+              props?: Omit<TdButtonProps, 'onClick'>
+            }
         /**
          * 重置按钮是否显示
          */
-        resetBtn?: boolean
+        resetBtn?:
+          | false
+          | {
+              text?: string
+              props?: Omit<TdButtonProps, 'onClick'>
+            }
       }
 }
 

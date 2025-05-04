@@ -7,17 +7,19 @@ import { Button } from 'tdesign-vue-next'
 
 const option: FormOption = {
   footer: {
+    submitBtn: {
+      props: {
+        block: true,
+      },
+    },
     resetBtn: false, // 隐藏重置按钮
-    prefixRender: () => <div>前缀</div>, // 自定义前缀
+    prefixRender: () => <span style="width:40px">前缀</span>, // 自定义前缀
     suffixRender: () => (
       // 自定义后缀
       // 在表单内通过给按钮赋予 type = 'submit/reset'，可触发表单的提交或重置
-      <div>
-        后缀
-        <Button type="reset" theme="default">
-          自定义的重置
-        </Button>
-      </div>
+      <Button type="reset" theme="default">
+        自定义的重置
+      </Button>
     ),
   },
 

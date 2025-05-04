@@ -1,13 +1,11 @@
-import { defineComponent, provide, ref, watch } from 'vue'
+import { defineComponent, provide, ref, watch, type StyleValue } from 'vue'
 import { useCreate } from '../../_hooks/create'
 import { cFormProps } from './props'
 import {
   Button,
-  Col,
   Form,
   FormItem,
   Loading,
-  Row,
   type FormInstanceFunctions,
 } from 'tdesign-vue-next'
 import CFormItem from './c-form-item'
@@ -113,32 +111,47 @@ export default defineComponent({
       const {
         prefixRender,
         suffixRender,
-        submitBtn = true,
-        resetBtn = true,
+        submitBtn = {},
+        resetBtn = {},
+        style = {},
       } = props.option.footer || {}
+      const defaultStyle: StyleValue = {
+        width: '100%',
+        display: 'flex',
+        flexDirection: 'row',
+        alignItems: 'center',
+        gap: '16px',
+        ...style,
+      }
       return (
         <FormItem>
-          <Row gutter={16} align="center">
+          <div style={defaultStyle}>
             {isFunction(prefixRender) ? prefixRender(data.value) : undefined}
             {submitBtn ? (
-              <Col>
-                <CButton theme="primary" click={submit} loadingDelay={250}>
-                  提交
-                </CButton>
-              </Col>
+              <CButton
+                theme="primary"
+                click={submit}
+                loadingDelay={250}
+                props={submitBtn.props}
+              >
+                {submitBtn.text || '提交'}
+              </CButton>
             ) : undefined}
             {resetBtn ? (
-              <Col>
-                <Button theme="default" variant="base" type="reset">
-                  重置
-                </Button>
-              </Col>
+              <Button
+                theme="default"
+                variant="base"
+                type="reset"
+                {...resetBtn.props}
+              >
+                {resetBtn.text || '重置'}
+              </Button>
             ) : undefined}
             {/* <Col>
               <Checkbox style="display:flex">提交后继续</Checkbox>
             </Col> */}
             {isFunction(suffixRender) ? suffixRender(data.value) : undefined}
-          </Row>
+          </div>
         </FormItem>
       )
     }
